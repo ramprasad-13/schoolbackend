@@ -19,6 +19,10 @@ app.use(addstudent)
 app.use(delstudent)
 app.use(updatestudent)
 
+app.get("/",(req,res)=>{
+    res.json({"success":"App deployed sucessfully"})
+})
+
 app.listen(port,hostname,()=>{
     console.log(`app started listening http://localhost:${port}`);
 })
