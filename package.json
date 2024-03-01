@@ -1,0 +1,23 @@
+{
+  "name": "school_alumini",
+  "version": "1.0.0",
+  "description": "Saint Joseph's school website",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js"
+  },
+  "author": "Ramprasad",
+  "license": "ISC",
+  "dependencies": {
+    "@vercel/node": "^3.0.20",
+    "busboy": "^1.6.0",
+    "cloudinary": "^1.41.0",
+    "dotenv": "^16.4.5",
+    "express": "^4.18.2",
+    "express-fileupload": "^1.4.2",
+    "fs-extra": "^11.1.1",
+    "mongoose": "^8.0.0",
+    "multer": "^1.4.5-lts.1"
+  }
+}
