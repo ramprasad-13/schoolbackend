@@ -4,9 +4,9 @@ const mongoose = require('mongoose');
 const std_schema =mongoose.Schema({
     std_name:String,
     father_name:String,
-    class:String,
+    std_class:String,
     campus:String,
-    ph_number:String,
+    ph_number:Number,
     email:String,
     profilepic:String,
     approved:Boolean
