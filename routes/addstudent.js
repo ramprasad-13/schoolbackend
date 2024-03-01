@@ -35,8 +35,8 @@ router.post('/addstudent', async (req, res) => {
         return res.status(400).send('No file uploaded')
       }
 
-      const { std_name, father_name, std_class, campus, ph_number, email } = req.body
-      const result = await cloudinary.uploader.upload_stream({ resource_type: 'raw' }, (error, result) => {
+      const { std_name, father_name, std_class, campus, ph_number, email, filename } = req.body
+      const result = await cloudinary.uploader.upload_stream({ resource_type: 'image', public_id: filename }, (error, result) => {
         if (error) {
           return res.status(500).json(error)
         }
@@ -48,7 +48,7 @@ router.post('/addstudent', async (req, res) => {
           campus,
           ph_number,
           email,
-          profilepic: result.url,
+          profilepic: result.secure_url, // use secure_url to get the https version of the URL
           approved: false
         })
 
