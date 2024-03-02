@@ -28,7 +28,8 @@ router.delete("/delete/:id", async (req, res) => {
 
             // Delete student from database
             await students.deleteOne({ _id: id });
-            res.status(203).send("Deleted successfully");
+            let students_data = await students.find()
+            res.status(203).send(students_data);
         } else {
             res.send("Student not found!");
         }
