@@ -11,7 +11,7 @@ router.get('/students', async (req, res) => {
         const skip = (page - 1) * PAGE_SIZE; // Calculate the number of records to skip
 
         // Handle search by std_name (if provided)
-        const stdNameQuery = req.query.std_name; // Get the std_name from query parameters
+        const stdNameQuery = req.query.name; // Get the std_name from query parameters
 
         let query = students.find(); // Base query
 
