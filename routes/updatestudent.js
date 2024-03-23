@@ -14,7 +14,9 @@ router.patch("/update/:id", async (req, res) => {
             { new: true, runValidators: true }
         );
         if (student_found) {
-            res.status(200).send("Student update successful");
+            let query = { approved: false }; // Base query
+            const studentsData = await students.find(query); //send unapproved students
+            res.status(200).send(studentsData);
         } else {
             res.status(404).send("Student not found!");
         }
