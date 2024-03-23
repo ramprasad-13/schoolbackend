@@ -5,7 +5,7 @@ require('dotenv').config()
 const uri=process.env.MONGO_URI;
 
 //mongo db connection
-mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect(uri);
 
 const db=mongoose.connection;
 db.on("error",()=>{console.error.bind()});
