@@ -5,7 +5,7 @@ const port = process.env.PORT || 3000;
 const app=express();
 
 //routes
-const getstudents= require('./routes/getstudents')
+const getunapprovedstudents= require('./routes/getunapprovedstudents')
 const getstudent = require('./routes/getstudent')
 const addstudent = require('./routes/addstudent')
 const delstudent = require('./routes/delstudent')
@@ -23,7 +23,7 @@ app.use(cors(corsOptions)); // allow any origin
 //middlewares
 app.use(express.json())
 app.use(express.urlencoded({extended: true}))
-app.use(getstudents)
+app.use(getunapprovedstudents)
 app.use(getstudent)
 app.use(addstudent)
 app.use(delstudent)
