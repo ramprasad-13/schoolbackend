@@ -6,6 +6,7 @@ const app=express();
 
 //routes
 const getunapprovedstudents= require('./routes/getunapprovedstudents')
+const getapprovedstudents= require('./routes/getapprovedstudents')
 const getstudent = require('./routes/getstudent')
 const addstudent = require('./routes/addstudent')
 const delstudent = require('./routes/delstudent')
@@ -24,6 +25,7 @@ app.use(cors(corsOptions)); // allow any origin
 app.use(express.json())
 app.use(express.urlencoded({extended: true}))
 app.use(getunapprovedstudents)
+app.use(getapprovedstudents)
 app.use(getstudent)
 app.use(addstudent)
 app.use(delstudent)
