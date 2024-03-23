@@ -13,15 +13,22 @@ router.get('/students', async (req, res) => {
         // Handle search by std_name (if provided)
         const stdNameQuery = req.query.name; // Get the std_name from query parameters
 
-        let query = students.find(); // Base query
+        let query = {}; // Base query
 
         if (stdNameQuery) {
-            query = query.where('std_name', new RegExp(stdNameQuery, 'i')); // Case-insensitive std_name search
+            query.std_name = new RegExp(stdNameQuery, 'i'); // Case-insensitive std_name search
         }
 
-        const studentsData = await query.skip(skip).limit(PAGE_SIZE);
+        const studentsData = await students.find(query).skip(skip).limit(PAGE_SIZE);
+        const totalRecords = await students.countDocuments(query); // Get the total number of records
 
-        res.send(studentsData);
+        const totalPages = Math.ceil(totalRecords / PAGE_SIZE); // Calculate the total number of pages
+
+        res.send({
+            data: studentsData,
+            totalPages: totalPages,
+            currentPage: page
+        });
     } catch (error) {
         res.status(500).send(error);
     }
