@@ -5,7 +5,8 @@ require('dotenv').config()
 const uri=process.env.MONGO_URI;
 
 //mongo db connection
-mongoose.connect(uri)
+mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true });
+
 const db=mongoose.connection;
 db.on("error",()=>{console.error.bind()});
 db.once("open",()=>{console.log("DB connection established")});
