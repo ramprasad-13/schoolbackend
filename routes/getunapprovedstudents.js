@@ -13,7 +13,7 @@ router.get('/students', async (req, res) => {
         // Handle search by std_name (if provided)
         const stdNameQuery = req.query.name; // Get the std_name from query parameters
 
-        let query = {}; // Base query
+        let query = { approved: false }; // Base query
 
         if (stdNameQuery) {
             query.std_name = new RegExp(stdNameQuery, 'i'); // Case-insensitive std_name search
