@@ -3,7 +3,7 @@ const router = express.Router();
 const students = require('../models/student_model');
 
 // Define the default page size (number of records per page)
-const PAGE_SIZE = 10;
+const PAGE_SIZE = 12;
 
 router.get('/students', async (req, res) => {
     try {
