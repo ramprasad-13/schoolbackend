@@ -3,7 +3,7 @@ const router = express.Router();
 const students = require('../models/student_model');
 
 // Define the default page size (number of records per page)
-const PAGE_SIZE = 12;
+const PAGE_SIZE = 10;
 
 router.get('/students', async (req, res) => {
     try {
@@ -19,16 +19,9 @@ router.get('/students', async (req, res) => {
             query = query.where('std_name', new RegExp(stdNameQuery, 'i')); // Case-insensitive std_name search
         }
 
-        const totalRecords = await query.countDocuments(); // Get the total number of records
-        const totalPages = Math.ceil(totalRecords / PAGE_SIZE); // Calculate the total number of pages
-
         const studentsData = await query.skip(skip).limit(PAGE_SIZE);
 
-        res.send({
-            data: studentsData,
-            totalPages: totalPages,
-            currentPage: page
-        });
+        res.send(studentsData);
     } catch (error) {
         res.status(500).send(error);
     }
