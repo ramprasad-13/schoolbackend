@@ -2,7 +2,10 @@ const express = require('express')
 const router = express.Router()
 const multer = require('multer')
 const cloudinary = require("cloudinary").v2
-require('../connection')
+require('../connection');
+const nodemailer = require('nodemailer');
+
+
 
 // multer configuration
 const upload = multer({
@@ -51,9 +54,37 @@ router.post('/addstudent', async (req, res) => {
           profilepic: result.secure_url, // use secure_url to get the https version of the URL
           approved: false
         })
+        //send mail to approved student
+        const transpoter = nodemailer.createTransport({
+          service:'gmail',
+          auth:{
+            user:process.env.APP_USER,
+            pass:process.env.APP_PASSWORD
+          }
+        })
+        
+        const mailOptions = {
+          from:process.env.APP_USER,
+          to:`${current_student.email}`,
+          subject:`Great!,you are now part of saint Joseph's Alumini.`,
+          html:`
+          <h3>Hello, ${current_student.std_name}</h3>
+          <p>You have been added to saint Joseph's Alumini. Now you are able to get updates from US.</p>
+          <h5>Stay Connected</h5>
+          `}
 
         current_student.save()
-          .then(student => res.status(200).json(student))
+          .then((student) => {
+            //send mail here
+            transpoter.sendMail(mailOptions)
+            .then(() => {
+                return res.status(200).json({student});
+            })
+            .catch((error) => {
+                console.error(error);
+                return res.status(500).json({ message: "Sending Otp Failed" });
+            });
+          })
           .catch(error => res.status(500).json(error))
       }).end(req.file.buffer)
     })

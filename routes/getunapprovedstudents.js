@@ -1,11 +1,12 @@
 const express = require('express');
 const router = express.Router();
 const students = require('../models/student_model');
+const auth = require('../middleware/authenticateToken')
 
 // Define the default page size (number of records per page)
 const PAGE_SIZE = 12;
 
-router.get('/validatestudents', async (req, res) => {
+router.get('/validatestudents',auth,async (req, res) => {
     try {
         const page = parseInt(req.query.page) || 1; // Get the requested page (default to page 1)
         const skip = (page - 1) * PAGE_SIZE; // Calculate the number of records to skip
