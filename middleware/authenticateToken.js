@@ -5,7 +5,7 @@ const secretKey = process.env.JWT_SECRET;
 
 const authenticateToken = (req,res,next)=>{
     try {
-        const token = req.cookies.token || req.headers['authorization'];
+        const token = req.headers['authorization'];
     if(!token){
         return res.sendStatus(401) //No token found!
     }
