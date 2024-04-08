@@ -42,7 +42,7 @@ router.post('/verify', async (req, res) => {
             //send a session here to frontent to store and access protected routes. 
             const user = {id:findUser.id,email:findUser.email};
             const accessToken = generateAccessToken(user);
-            res.cookie('token',accessToken,{httpOnly:true, Secure:true, sameSite:'none'});
+            res.cookie('token',accessToken,{secure:true, httpOnly:true, sameSite:'none'});
 
             //or res.send({accessToken})
             return res.status(200).json({ message: "OTP Verified successfully" });
