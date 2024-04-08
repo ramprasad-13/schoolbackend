@@ -42,7 +42,7 @@ router.post('/verify', async (req, res) => {
             //send a session here to frontent to store and access protected routes. 
             const user = {id:findUser.id,email:findUser.email};
             const accessToken = generateAccessToken(user);
-            res.cookie('token',accessToken,{domain:'https://schooldashboard-sandy.vercel.app',httpOnly:true, maxAge: 86400000, sameSite: "none", secure:true});
+            res.cookie('token',accessToken,{domain:'schooldashboard-sandy.vercel.app',httpOnly:true, maxAge: 86400000, sameSite: "none", secure:true});
 
             //or res.send({accessToken})
             return res.status(200).json({ message: "OTP Verified successfully" });
