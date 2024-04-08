@@ -28,7 +28,7 @@ var corsOptions = {
     optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
   };
 
-app.use(cors(corsOptions)); // allow any origin
+app.use(cors()); // allow any origin
 
 //middlewares
 app.use(express.json())
