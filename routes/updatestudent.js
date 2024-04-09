@@ -30,16 +30,14 @@ router.patch("/update/:id", async (req, res) => {
         
         const mailOptions = {
           from:process.env.APP_USER,
-          to:`${current_student.email}`,
+          to:`${student_found.email}`,
           subject:`Great!,you are now part of saint Joseph's Alumini.`,
           html:`
-          <h3>Hello, ${current_student.std_name}</h3>
+          <h3>Hello, ${student_found.std_name}</h3>
           <p>You have been added to Saint Joseph's Alumni. Now you are able to receive updates from us.</p>
           <h5>Stay Connected</h5>
           `}
 
-            //send mail here
-            .then((studentsData) => {
             //send mail here
             transpoter.sendMail(mailOptions)
             .then(() => {
@@ -49,8 +47,6 @@ router.patch("/update/:id", async (req, res) => {
                 console.error(error);
                 return res.status(500).json({ message: "Failed to send mail to student." });
             });
-          })
-          .catch(error => res.status(500).json(error))
         
         } else {
             res.status(404).send("Student not found!");
@@ -59,7 +55,5 @@ router.patch("/update/:id", async (req, res) => {
         res.status(500).send(error);
     }
 });
-
-
 
 module.exports = router
