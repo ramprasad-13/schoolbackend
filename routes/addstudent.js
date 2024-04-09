@@ -66,7 +66,7 @@ router.post('/addstudent', async (req, res) => {
         const mailOptions = {
           from:process.env.APP_USER,
           to:`${current_student.email}`,
-          subject:`Great!,you are now part of saint Joseph's Alumini.`,
+          subject:`Great! You are now one step closer to becoming part of Saint Joseph's Family.`,
           html:`
           <h3>Hello, ${current_student.std_name}</h3>
           <p>You have successfully sent a request to join Saint Joseph's family. Upon successful verification, you will be added to our Alumni.</p>
