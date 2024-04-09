@@ -39,11 +39,11 @@ router.patch("/update/:id", async (req, res) => {
           `}
 
             //send mail here
-            .then((studentData) => {
+            .then((studentsData) => {
             //send mail here
             transpoter.sendMail(mailOptions)
             .then(() => {
-                return res.status(200).send(studentData);
+                return res.status(200).send(studentsData);
             })
             .catch((error) => {
                 console.error(error);
