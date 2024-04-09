@@ -69,7 +69,7 @@ router.post('/addstudent', async (req, res) => {
           subject:`Great!,you are now part of saint Joseph's Alumini.`,
           html:`
           <h3>Hello, ${current_student.std_name}</h3>
-          <p>You have been added to saint Joseph's Alumini. Now you are able to get updates from US.</p>
+          <p>You have successfully sent a request to join Saint Joseph's family. Upon successful verification, you will be added to our Alumni.</p>
           <h5>Stay Connected</h5>
           `}
 
