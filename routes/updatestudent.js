@@ -39,14 +39,18 @@ router.patch("/update/:id", async (req, res) => {
           `}
 
             //send mail here
+            .then((studentData) => {
+            //send mail here
             transpoter.sendMail(mailOptions)
             .then(() => {
-                return res.status(200).send(studentsData);
+                return res.status(200).send(studentData);
             })
             .catch((error) => {
                 console.error(error);
-                return res.status(500).json({ message: "Failed to send mail to User [ verified sucessfully ]!" });
+                return res.status(500).json({ message: "Failed to send mail to student." });
             });
+          })
+          .catch(error => res.status(500).json(error))
         
         } else {
             res.status(404).send("Student not found!");
