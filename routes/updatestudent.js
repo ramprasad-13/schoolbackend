@@ -1,6 +1,7 @@
 const express = require('express')
 const router = express.Router()
 require('../connection')
+const nodemailer = require('nodemailer')
 
 //importing model
 const students= require('../models/student_model')
